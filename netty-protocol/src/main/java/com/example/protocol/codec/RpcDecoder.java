@@ -66,7 +66,7 @@ public class RpcDecoder extends ByteToMessageDecoder {
 
         RequestTypeEnum requestTypeEnum = RequestTypeEnum.findByType(requestType);
         SerializationTypeEnum serializationTypeEnum = SerializationTypeEnum.findByType(serializationType);
-        ISerializer serializer = DefaultSerializerFactory.obtainByType(serializationTypeEnum);
+        ISerializer serializer = DefaultSerializerFactory.newSerializer(serializationTypeEnum);
 
         switch (requestTypeEnum) {
             case REQUEST:

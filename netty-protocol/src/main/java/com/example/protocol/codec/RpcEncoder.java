@@ -25,7 +25,7 @@ public class RpcEncoder extends MessageToByteEncoder<RpcProtocol<Object>> {
             byteBuf.writeByte(header.getRequestType());
             byteBuf.writeLong(header.getRequestId());
 
-            ISerializer serializer = DefaultSerializerFactory.obtainByType(SerializationTypeEnum.JSON);
+            ISerializer serializer = DefaultSerializerFactory.newSerializer(SerializationTypeEnum.JSON);
             // encode时将body序列化
             byte[] bodyBytes = serializer.serialize(protocol.getBody());
             byteBuf.writeInt(bodyBytes.length);

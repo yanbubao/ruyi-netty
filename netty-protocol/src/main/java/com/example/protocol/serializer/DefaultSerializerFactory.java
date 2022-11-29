@@ -18,7 +18,7 @@ public class DefaultSerializerFactory implements SerializerFactory {
         SUPPORT_SERIALIZER_MAP.put(SerializationTypeEnum.JAVA, new JavaSerializer());
     }
 
-    public static ISerializer obtainByType(SerializationTypeEnum serializationType) {
+    public static ISerializer newSerializer(SerializationTypeEnum serializationType) {
         if (SUPPORT_SERIALIZER_MAP.containsKey(serializationType)) {
             return SUPPORT_SERIALIZER_MAP.get(serializationType);
         }

@@ -7,7 +7,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import java.net.ServerSocket;
 
 /**
- * EventLoopEvent是可以独立使用的
+ * NioEventLoop是可以独立使用的
  * 利用EventLoop的selector多路复用特性
  * <p>
  * EventLoop中持有一个Selector实例
@@ -25,8 +25,6 @@ public class SingleEventLoopEventDemo {
 //        System.out.println(group.next().register(ss));
         System.out.println(group.next());
 
-        group.next().submit(() -> {
-            System.out.println(Thread.currentThread().getName() + "----");
-        });
+        group.next().submit(() -> System.out.println(Thread.currentThread().getName() + "----"));
     }
 }

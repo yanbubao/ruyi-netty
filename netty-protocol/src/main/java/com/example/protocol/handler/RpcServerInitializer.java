@@ -16,8 +16,8 @@ public class RpcServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         log.info("[NettyServer] begin server initializer.");
-        socketChannel.pipeline().
-                addLast(new LengthFieldBasedFrameDecoder(
+        socketChannel.pipeline()
+                .addLast(new LengthFieldBasedFrameDecoder(
                         Integer.MAX_VALUE,
                         12,
                         4,

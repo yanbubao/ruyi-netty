@@ -16,6 +16,7 @@
         <module>netty-rpc-provider</module>
         <module>netty-protocol</module>
         <module>netty-rpc-registry</module>
+        <module>netty-im-project</module>
     </modules>
 
     <properties>
@@ -125,6 +126,16 @@
             <dependency>
                 <groupId>com.example.provider</groupId>
                 <artifactId>netty-rpc-provider</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example.registry</groupId>
+                <artifactId>netty-rpc-registry</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.example.im</groupId>
+                <artifactId>netty-im-project</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>

@@ -2,7 +2,9 @@ package com.example.im.server.handler;
 
 import com.example.im.protocol.request.LoginRequestPacket;
 import com.example.im.protocol.response.LoginResponsePacket;
+import com.example.im.session.Session;
 import com.example.im.util.IDUtil;
+import com.example.im.util.SessionUtil;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -41,7 +43,10 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
             String userId = IDUtil.randomId();
             loginResponsePacket.setUserId(userId);
             System.out.println("[" + loginRequestPacket.getUserName() + "] 登录成功");
-            // todo session bind
+
+            Session session = new Session(userId, loginRequestPacket.getUserName());
+            SessionUtil.bindSession(session, ctx.channel());
+
         } else {
             loginResponsePacket.setReason("账号密码校验失败");
             loginResponsePacket.setSuccess(false);

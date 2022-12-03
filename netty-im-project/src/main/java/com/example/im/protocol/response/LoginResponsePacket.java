@@ -1,4 +1,4 @@
-package com.example.im.protocol.request;
+package com.example.im.protocol.response;
 
 import com.example.im.protocol.Packet;
 import com.example.im.protocol.command.Command;
@@ -7,18 +7,18 @@ import lombok.EqualsAndHashCode;
 
 /**
  * @Author yanzx
- * @Date 2022/12/1 22:31
+ * @Date 2022/12/3 15:19
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class LoginRequestPacket extends Packet {
-
+public class LoginResponsePacket extends Packet {
     @Override
     public Byte getCommand() {
-        return Command.LOGIN_REQUEST;
+        return Command.LOGIN_RESPONSE;
     }
 
-    private Integer userId;
+    private boolean success;
+    private String reason;
+    private String userId;
     private String userName;
-    private String password;
 }

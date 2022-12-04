@@ -33,7 +33,7 @@ public class IMFrameDecoder extends LengthFieldBasedFrameDecoder {
      */
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
-        // fixme 此处校验魔数疑问 待验证
+        // notice 此处校验魔数疑问 待验证
         //  此处在拆包器逻辑中校验魔数Magic不太合理，如果出现半包且不够Magic数据时，不应该直接关闭连接
         //  不应该放在业务拆包之前，个人觉得应该是放在拆包之后解码器之前
 

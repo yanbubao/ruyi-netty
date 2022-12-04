@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class HeartBeatTimerHandler extends ChannelInboundHandlerAdapter {
 
     /**
-     * 发送心跳时间间隔delay
+     * 发送心跳时间间隔
      */
     private static final int HEARTBEAT_INTERVAL = 60;
 

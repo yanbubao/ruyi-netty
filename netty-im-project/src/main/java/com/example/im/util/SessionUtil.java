@@ -26,6 +26,7 @@ public class SessionUtil {
      */
     public static void bindSession(Session session, Channel channel) {
         if (USERID_CHANNEL_MAP.containsKey(session.getUserId())) {
+            System.out.println("[SessionUtil] user binder session, username: " + session.getUserName());
             return;
         }
         USERID_CHANNEL_MAP.put(session.getUserId(), channel);
@@ -52,7 +53,7 @@ public class SessionUtil {
         }
     }
 
-    private static boolean hasLogin(Channel channel) {
+    public static boolean hasLogin(Channel channel) {
         return Objects.nonNull(getSession(channel));
     }
 
@@ -60,4 +61,7 @@ public class SessionUtil {
         return channel.attr(Attributes.SESSION).get();
     }
 
+    public static Channel getChannel(String userId) {
+        return USERID_CHANNEL_MAP.get(userId);
+    }
 }

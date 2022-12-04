@@ -19,11 +19,12 @@ import java.util.Map;
 @ChannelHandler.Sharable
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
 
-    private final LoginRequestHandler INSTANCE = new LoginRequestHandler();
+    public static final LoginRequestHandler INSTANCE = new LoginRequestHandler();
 
     private final Map<String, String> USER_INFO_MAP;
 
-    protected LoginRequestHandler() {
+    private LoginRequestHandler() {
+        // mock user info.
         USER_INFO_MAP = new HashMap<>();
         USER_INFO_MAP.put("姆巴佩", "123");
         USER_INFO_MAP.put("内马尔", "123");

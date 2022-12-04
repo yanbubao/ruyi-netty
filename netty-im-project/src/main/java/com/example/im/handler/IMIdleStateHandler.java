@@ -19,7 +19,7 @@ public class IMIdleStateHandler extends IdleStateHandler {
     /**
      * 空闲检测时间间隔
      */
-    private static final int READER_IDLE_TIME = 15;
+    private static final int READER_IDLE_TIME = 180;
 
     public IMIdleStateHandler() {
         super(READER_IDLE_TIME, 0, 0, TimeUnit.SECONDS);

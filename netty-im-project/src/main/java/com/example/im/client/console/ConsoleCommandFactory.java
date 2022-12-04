@@ -1,5 +1,8 @@
 package com.example.im.client.console;
 
+import com.example.im.client.console.impl.LogoutConsoleCommand;
+import com.example.im.client.console.impl.SendToUserConsoleCommand;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -10,8 +13,8 @@ public class ConsoleCommandFactory {
     private final static ConcurrentHashMap<String, ConsoleCommand> SUPPORT_CONSOLE_COMMAND_MAP = new ConcurrentHashMap<>();
 
     static {
-//        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.SEND_TO_USER, new SendToUserConsoleCommand());
-//        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.LOGOUT, new LogoutConsoleCommand());
+        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.SEND_TO_USER, new SendToUserConsoleCommand());
+        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.LOGOUT, new LogoutConsoleCommand());
 //        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.CREATE_GROUP, new CreateGroupConsoleCommand());
 //        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.JOIN_GROUP, new JoinGroupConsoleCommand());
 //        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.QUIT_GROUP, new QuitGroupConsoleCommand());
@@ -20,9 +23,6 @@ public class ConsoleCommandFactory {
     }
 
     public static ConsoleCommand get(String consoleCommand) {
-        if (SUPPORT_CONSOLE_COMMAND_MAP.containsKey(consoleCommand)) {
-            return SUPPORT_CONSOLE_COMMAND_MAP.get(consoleCommand);
-        }
-        throw new IllegalArgumentException("[Client] not support console command: " + consoleCommand);
+        return SUPPORT_CONSOLE_COMMAND_MAP.get(consoleCommand);
     }
 }

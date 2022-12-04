@@ -1,5 +1,15 @@
 package com.example.im.client;
 
+import com.example.im.client.console.ConsoleCommandManager;
+import com.example.im.client.console.impl.LoginConsoleCommand;
+import com.example.im.client.handler.HeartBeatTimerHandler;
+import com.example.im.client.handler.IMClientHandler;
+import com.example.im.client.handler.LoginResponseHandler;
+import com.example.im.client.handler.LogoutResponseHandler;
+import com.example.im.codec.IMFrameDecoder;
+import com.example.im.codec.PacketCodecHandler;
+import com.example.im.handler.IMIdleStateHandler;
+import com.example.im.util.SessionUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -9,6 +19,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -25,13 +36,7 @@ public class NettyClient {
      * 客户端连接失败最大重试次数
      */
     private static final int MAX_RETRY = 5;
-    /**
-     * Host
-     */
     private static final String HOST = "127.0.0.1";
-    /**
-     * Port
-     */
     private static final int PORT = 8000;
 
     private static void startClient() {
@@ -44,10 +49,16 @@ public class NettyClient {
                 .option(ChannelOption.TCP_NODELAY, true)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
-                    protected void initChannel(SocketChannel ch) throws Exception {
+                    protected void initChannel(SocketChannel ch) {
                         ch.pipeline()
-                                // 空闲监测
-                                .addLast();
+                                .addLast(new IMIdleStateHandler())
+                                .addLast(new IMFrameDecoder())
+                                .addLast(PacketCodecHandler.INSTANCE)
+                                .addLast(LoginResponseHandler.INSTANCE)
+                                .addLast(LogoutResponseHandler.INSTANCE)
+                                // 业务处理器
+                                .addLast(IMClientHandler.INSTANCE)
+                                .addLast(new HeartBeatTimerHandler());
                     }
                 });
 
@@ -77,5 +88,19 @@ public class NettyClient {
 
     private static void startConsoleThread(Channel channel) {
 
+        ConsoleCommandManager consoleCommandManager = new ConsoleCommandManager();
+        LoginConsoleCommand loginConsoleCommand = new LoginConsoleCommand();
+
+        // 控制台输入
+        Scanner scanner = new Scanner(System.in);
+        new Thread(() -> {
+            while (!Thread.interrupted()) {
+                if (SessionUtil.hasLogin(channel)) {
+                    consoleCommandManager.exec(scanner, channel);
+                } else {
+                    loginConsoleCommand.exec(scanner, channel);
+                }
+            }
+        }).start();
     }
 }

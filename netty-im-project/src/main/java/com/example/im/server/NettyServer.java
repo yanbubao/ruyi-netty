@@ -1,6 +1,9 @@
 package com.example.im.server;
 
+import com.example.im.codec.IMFrameDecoder;
+import com.example.im.codec.PacketCodecHandler;
 import com.example.im.handler.IMIdleStateHandler;
+import com.example.im.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -22,11 +25,11 @@ public class NettyServer {
 
     private static final int PORT = 8000;
 
-    private final static int OS_SYSTEM_CPU_NUM = NettyRuntime.availableProcessors();
+    private final static int OS_CPU_NUM = NettyRuntime.availableProcessors();
 
     private static void startServer() {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
-        NioEventLoopGroup workerGroup = new NioEventLoopGroup(OS_SYSTEM_CPU_NUM * 2);
+        NioEventLoopGroup workerGroup = new NioEventLoopGroup(OS_CPU_NUM * 2);
         ServerBootstrap serverBootstrap = new ServerBootstrap();
 
         serverBootstrap.group(bossGroup, workerGroup)
@@ -40,12 +43,17 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
-                    protected void initChannel(SocketChannel ch) throws Exception {
+                    protected void initChannel(SocketChannel ch) {
                         ch.pipeline()
-                                // 空闲监测
                                 .addLast(new IMIdleStateHandler())
-
-                        ;
+                                .addLast(new IMFrameDecoder())
+                                .addLast(PacketCodecHandler.INSTANCE)
+                                .addLast(LoginRequestHandler.INSTANCE)
+                                .addLast(HeartBeatRequestHandler.INSTANCE)
+                                .addLast(AuthHandler.INSTANCE)
+                                // 业务处理器
+                                .addLast(LogoutRequestHandler.INSTANCE)
+                                .addLast(IMServerHandler.INSTANCE);
                     }
                 });
 

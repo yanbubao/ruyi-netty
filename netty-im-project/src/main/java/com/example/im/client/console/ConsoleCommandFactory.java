@@ -17,8 +17,7 @@ public class ConsoleCommandFactory {
         SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.JOIN_GROUP, new JoinGroupConsoleCommand());
         SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.QUIT_GROUP, new QuitGroupConsoleCommand());
         SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.LIST_GROUP_MEMBERS, new ListGroupMembersConsoleCommand());
-//        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.SEND_TO_GROUP, new SendToGroupConsoleCommand());
-
+        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.SEND_TO_GROUP, new SendToGroupConsoleCommand());
         SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.LOGOUT, new LogoutConsoleCommand());
     }
 

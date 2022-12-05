@@ -25,17 +25,17 @@ public class JoinGroupRequestHandler extends SimpleChannelInboundHandler<JoinGro
         // 获取群对应的channelGroup，然后将当前用户的Channel添加进去
         String groupId = requestPacket.getGroupId();
         ChannelGroup channelGroup = SessionUtil.getChannelGroup(groupId);
-        JoinGroupResponsePacket joinGroupResponsePacket = new JoinGroupResponsePacket();
+        JoinGroupResponsePacket responsePacket = new JoinGroupResponsePacket();
         if (channelGroup != null) {
             channelGroup.add(ctx.channel());
-            joinGroupResponsePacket.setSuccess(true);
-            joinGroupResponsePacket.setGroupId(groupId);
+            responsePacket.setSuccess(true);
+            responsePacket.setGroupId(groupId);
 
         } else {
-            joinGroupResponsePacket.setSuccess(false);
-            joinGroupResponsePacket.setGroupId(groupId);
-            joinGroupResponsePacket.setReason("群聊groupId不存在！");
+            responsePacket.setSuccess(false);
+            responsePacket.setGroupId(groupId);
+            responsePacket.setReason("群聊groupId不存在！");
         }
-        ctx.writeAndFlush(joinGroupResponsePacket);
+        ctx.writeAndFlush(responsePacket);
     }
 }

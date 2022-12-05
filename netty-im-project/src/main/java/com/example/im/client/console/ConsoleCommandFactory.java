@@ -1,9 +1,6 @@
 package com.example.im.client.console;
 
-import com.example.im.client.console.impl.CreateGroupConsoleCommand;
-import com.example.im.client.console.impl.JoinGroupConsoleCommand;
-import com.example.im.client.console.impl.LogoutConsoleCommand;
-import com.example.im.client.console.impl.SendToUserConsoleCommand;
+import com.example.im.client.console.impl.*;
 
 import java.util.concurrent.ConcurrentHashMap;
 

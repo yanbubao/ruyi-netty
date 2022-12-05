@@ -26,6 +26,7 @@ public class IMClientHandler extends SimpleChannelInboundHandler<Packet> {
     private IMClientHandler() {
         this.CLIENT_HANDLER_MAP = new HashMap<>();
         this.CLIENT_HANDLER_MAP.put(Command.MESSAGE_RESPONSE, MessageResponseHandler.INSTANCE);
+        this.CLIENT_HANDLER_MAP.put(Command.CREATE_GROUP_RESPONSE, CreateGroupResponseHandler.INSTANCE);
     }
 
     @Override

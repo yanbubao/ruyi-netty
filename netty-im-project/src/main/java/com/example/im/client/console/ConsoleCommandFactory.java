@@ -1,5 +1,6 @@
 package com.example.im.client.console;
 
+import com.example.im.client.console.impl.CreateGroupConsoleCommand;
 import com.example.im.client.console.impl.LogoutConsoleCommand;
 import com.example.im.client.console.impl.SendToUserConsoleCommand;
 
@@ -14,12 +15,13 @@ public class ConsoleCommandFactory {
 
     static {
         SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.SEND_TO_USER, new SendToUserConsoleCommand());
-        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.LOGOUT, new LogoutConsoleCommand());
-//        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.CREATE_GROUP, new CreateGroupConsoleCommand());
+        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.CREATE_GROUP, new CreateGroupConsoleCommand());
 //        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.JOIN_GROUP, new JoinGroupConsoleCommand());
 //        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.QUIT_GROUP, new QuitGroupConsoleCommand());
 //        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.LIST_GROUP_MEMBERS, new ListGroupMembersConsoleCommand());
 //        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.SEND_TO_GROUP, new SendToGroupConsoleCommand());
+
+        SUPPORT_CONSOLE_COMMAND_MAP.put(ConsoleCommand.LOGOUT, new LogoutConsoleCommand());
     }
 
     public static ConsoleCommand get(String consoleCommand) {

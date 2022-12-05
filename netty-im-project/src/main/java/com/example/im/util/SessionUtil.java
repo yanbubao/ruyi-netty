@@ -3,6 +3,8 @@ package com.example.im.util;
 import com.example.im.attribute.Attributes;
 import com.example.im.session.Session;
 import io.netty.channel.Channel;
+import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.DefaultChannelGroup;
 
 import java.util.Map;
 import java.util.Objects;
@@ -17,6 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionUtil {
 
     private static final Map<String, Channel> USERID_CHANNEL_MAP = new ConcurrentHashMap<>();
+
+    private static final Map<String, ChannelGroup> CHANNEL_GROUP_MAP = new ConcurrentHashMap<>();
 
     /**
      * 给Channel绑定用户Session
@@ -63,5 +67,9 @@ public class SessionUtil {
 
     public static Channel getChannel(String userId) {
         return USERID_CHANNEL_MAP.get(userId);
+    }
+
+    public static void bindChannelGroup(String groupId, DefaultChannelGroup channelGroup) {
+        CHANNEL_GROUP_MAP.put(groupId, channelGroup);
     }
 }

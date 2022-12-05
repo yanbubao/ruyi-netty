@@ -17,7 +17,7 @@ public class CreateGroupConsoleCommand implements ConsoleCommand {
 
     @Override
     public void exec(Scanner scanner, Channel channel) {
-        System.out.print("【拉人群聊】输入userId列表，userId之间英文逗号隔开:");
+        System.out.print("【拉人群聊】输入userId列表，userId之间英文逗号隔开: ");
         String userIds = scanner.next();
 
         String[] split = userIds.split(USER_ID_SEPARATOR);

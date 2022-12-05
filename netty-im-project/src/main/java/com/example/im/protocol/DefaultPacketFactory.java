@@ -28,8 +28,8 @@ public class DefaultPacketFactory {
         SUPPORT_PACKET_MAP.put(JOIN_GROUP_RESPONSE, JoinGroupResponsePacket.class);
         SUPPORT_PACKET_MAP.put(QUIT_GROUP_REQUEST, QuitGroupRequestPacket.class);
         SUPPORT_PACKET_MAP.put(QUIT_GROUP_RESPONSE, QuitGroupResponsePacket.class);
-//        SUPPORT_PACKET_MAP.put(LIST_GROUP_MEMBERS_REQUEST, ListGroupMembersRequestPacket.class);
-//        SUPPORT_PACKET_MAP.put(LIST_GROUP_MEMBERS_RESPONSE, ListGroupMembersResponsePacket.class);
+        SUPPORT_PACKET_MAP.put(LIST_GROUP_MEMBERS_REQUEST, ListGroupMembersRequestPacket.class);
+        SUPPORT_PACKET_MAP.put(LIST_GROUP_MEMBERS_RESPONSE, ListGroupMembersResponsePacket.class);
 //        SUPPORT_PACKET_MAP.put(GROUP_MESSAGE_REQUEST, GroupMessageRequestPacket.class);
 //        SUPPORT_PACKET_MAP.put(GROUP_MESSAGE_RESPONSE, GroupMessageResponsePacket.class);
         SUPPORT_PACKET_MAP.put(HEARTBEAT_REQUEST, HeartBeatRequestPacket.class);

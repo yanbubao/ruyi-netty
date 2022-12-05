@@ -26,8 +26,8 @@ public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<Creat
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, CreateGroupRequestPacket createGroupRequestPacket) throws Exception {
-        List<String> userIdList = createGroupRequestPacket.getUserIdList();
+    protected void channelRead0(ChannelHandlerContext ctx, CreateGroupRequestPacket requestPacket) throws Exception {
+        List<String> userIdList = requestPacket.getUserIdList();
 
         // 创建一个Channel分组
         DefaultChannelGroup channelGroup = new DefaultChannelGroup(ctx.executor());

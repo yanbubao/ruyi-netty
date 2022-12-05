@@ -25,7 +25,7 @@ public class HeartBeatRequestHandler extends SimpleChannelInboundHandler<HeartBe
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, HeartBeatRequestPacket heartBeatRequestPacket) {
+    protected void channelRead0(ChannelHandlerContext ctx, HeartBeatRequestPacket requestPacket) {
         log.info("[NettyServer] received heartbeat, datetime:{}", TimeUtil.timeString());
         ctx.writeAndFlush(new HeartBeatResponsePacket());
     }

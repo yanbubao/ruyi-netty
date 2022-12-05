@@ -72,4 +72,11 @@ public class SessionUtil {
     public static void bindChannelGroup(String groupId, DefaultChannelGroup channelGroup) {
         CHANNEL_GROUP_MAP.put(groupId, channelGroup);
     }
+
+    public static ChannelGroup getChannelGroup(String groupId) {
+        if (CHANNEL_GROUP_MAP.containsKey(groupId)) {
+            return CHANNEL_GROUP_MAP.get(groupId);
+        }
+        return null;
+    }
 }

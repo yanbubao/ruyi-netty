@@ -23,8 +23,8 @@ public class DefaultPacketFactory {
         SUPPORT_PACKET_MAP.put(LOGOUT_RESPONSE, LogoutResponsePacket.class);
         SUPPORT_PACKET_MAP.put(CREATE_GROUP_REQUEST, CreateGroupRequestPacket.class);
         SUPPORT_PACKET_MAP.put(CREATE_GROUP_RESPONSE, CreateGroupResponsePacket.class);
-//        SUPPORT_PACKET_MAP.put(JOIN_GROUP_REQUEST, JoinGroupRequestPacket.class);
-//        SUPPORT_PACKET_MAP.put(JOIN_GROUP_RESPONSE, JoinGroupResponsePacket.class);
+        SUPPORT_PACKET_MAP.put(JOIN_GROUP_REQUEST, JoinGroupRequestPacket.class);
+        SUPPORT_PACKET_MAP.put(JOIN_GROUP_RESPONSE, JoinGroupResponsePacket.class);
 //        SUPPORT_PACKET_MAP.put(QUIT_GROUP_REQUEST, QuitGroupRequestPacket.class);
 //        SUPPORT_PACKET_MAP.put(QUIT_GROUP_RESPONSE, QuitGroupResponsePacket.class);
 //        SUPPORT_PACKET_MAP.put(LIST_GROUP_MEMBERS_REQUEST, ListGroupMembersRequestPacket.class);

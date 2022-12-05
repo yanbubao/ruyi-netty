@@ -22,7 +22,7 @@ public class LogoutRequestHandler extends SimpleChannelInboundHandler<LogoutRequ
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, LogoutRequestPacket logoutRequestPacket) {
+    protected void channelRead0(ChannelHandlerContext ctx, LogoutRequestPacket requestPacket) {
         SessionUtil.unBindSession(ctx.channel());
         LogoutResponsePacket logoutResponsePacket = new LogoutResponsePacket();
         logoutResponsePacket.setSuccess(true);

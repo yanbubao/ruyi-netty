@@ -34,24 +34,24 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket loginRequestPacket) {
+    protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket requestPacket) {
         LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
-        loginResponsePacket.setVersion(loginRequestPacket.getVersion());
-        loginResponsePacket.setUserName(loginRequestPacket.getUserName());
+        loginResponsePacket.setVersion(requestPacket.getVersion());
+        loginResponsePacket.setUserName(requestPacket.getUserName());
 
-        if (valid(loginRequestPacket)) {
+        if (valid(requestPacket)) {
             loginResponsePacket.setSuccess(true);
             String userId = IDUtil.randomId();
             loginResponsePacket.setUserId(userId);
-            System.out.println("[" + loginRequestPacket.getUserName() + "] 登录成功");
+            System.out.println("[" + requestPacket.getUserName() + "] 登录成功");
 
-            Session session = new Session(userId, loginRequestPacket.getUserName());
+            Session session = new Session(userId, requestPacket.getUserName());
             SessionUtil.bindSession(session, ctx.channel());
 
         } else {
             loginResponsePacket.setReason("账号密码校验失败");
             loginResponsePacket.setSuccess(false);
-            System.out.println("[" + loginRequestPacket.getUserName() + "] 登录失败");
+            System.out.println("[" + requestPacket.getUserName() + "] 登录失败");
         }
 
         // 响应登录

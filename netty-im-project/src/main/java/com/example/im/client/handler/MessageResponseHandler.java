@@ -19,10 +19,10 @@ public class MessageResponseHandler extends SimpleChannelInboundHandler<MessageR
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, MessageResponsePacket messageResponsePacket) {
-        String fromUserId = messageResponsePacket.getFromUserId();
-        String fromUserName = messageResponsePacket.getFromUserName();
-        System.out.println(fromUserId + ":" + fromUserName + " -> " + messageResponsePacket
+    protected void channelRead0(ChannelHandlerContext ctx, MessageResponsePacket responsePacket) {
+        String fromUserId = responsePacket.getFromUserId();
+        String fromUserName = responsePacket.getFromUserName();
+        System.out.println(fromUserId + ":" + fromUserName + " -> " + responsePacket
                 .getMessage());
     }
 }

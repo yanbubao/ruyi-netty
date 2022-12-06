@@ -18,3 +18,15 @@
 
 ### 基于Netty实现的IM demo
 #### netty-im-project
+
+
+——————————————————————————————————————————
+
+##### 技术知识点总结：
+https://www.jianshu.com/p/7522bda72a25
+##### Netty-IM思维导图：
+https://www.processon.com/view/link/5bc343dde4b09b21f31baf69
+##### Netty大佬闪电侠简书（源码分析）：
+https://www.jianshu.com/u/4fdc8c2315e8
+
+

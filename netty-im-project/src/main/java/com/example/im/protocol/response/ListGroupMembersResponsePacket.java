@@ -26,7 +26,6 @@ public class ListGroupMembersResponsePacket extends Packet {
 
     @Override
     public Byte getCommand() {
-
         return Command.LIST_GROUP_MEMBERS_RESPONSE;
     }
 }
